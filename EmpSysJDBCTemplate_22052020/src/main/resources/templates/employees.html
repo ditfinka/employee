@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Firmy</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" />
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+<div style = "text-align: center;"><h1>Lista pracowników firmy</h1></div>
+<!--<p th:text="${naglowek}"/>-->
+
+<!--    <div th:each="allCompanies : ${companies}">-->
+<!--        <p th:text="${allCompanies.name}"/>-->
+<!--        <p th:text="${allCompanies.city}"/>-->
+<!--    </div>-->
+<div class="container">
+    <div style = "text-align: center;">
+        <a href="/new" class="btn btn-secondary btn-lg btn-block" data-toggle="button" role="button" aria-pressed="true">Dodaj nowego pracownika</a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr class = "font-weight-bold ">
+            <td>Imię</td>
+            <td>Nazwisko</td>
+            <td>Stanowisko</td>
+            <td>Wiek</td>
+            <td>AKT</td>
+            <td>Narodowość</td>
+        </tr>
+        </thead>
+        <tbody th:each="employee : ${employees}">
+            <tr>
+                <td th:text="${employee.name}"/></td>
+                <td th:text="${employee.surname}"/></td>
+                <td th:text="${employee.position}"/></td>
+                <td th:text="${employee.age}"/></td>
+                <td th:text="${employee.active}"/></td>
+                <td th:text="${employee.nationality}"/></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

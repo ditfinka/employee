@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodaj nową firmę</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" />
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+    <div style = "text-align: center;">
+        <h1>Dodaj nowego pracownika do bazy danych</h1>
+    </div>
+    <form class="form-horizontal"  th:object="${employee}" th:action="@{/employees}"  th:method="post">
+        <div class="container" style="margin-top:10mm;">
+            <div class="row">
+                <div class="col-sm">
+                    <div style = "margin-top:10.75mm; text-align:center;">
+                        <h5>Dane osobowe</h5>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" th:field="*{name}"/>
+                        <label class="control-label">Imię</label>
+                        <div class="text-danger"><p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" th:field="*{surname}"/>
+                        <label class="control-label">Nazwisko</label>
+                        <div class="text-danger"><p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"/></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" th:field="*{position}"/>
+                        <label class="control-label">Stanowisko</label>
+                        <div class="text-danger"><p th:if="${#fields.hasErrors('position')}" th:errors="*{position}"/></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" th:field="*{age}"/>
+                        <label class="control-label">Wiek</label>
+                        <div class="text-danger"><p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"/></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" th:field="*{nationality}"/>
+                        <label class="control-label">Obywatelstwo</label>
+                        <div class="text-danger"><p th:if="${#fields.hasErrors('nationality')}" th:errors="*{nationality}"/></div>
+                    </div>
+                </div>
+
+                <div class="col-sm">
+
+                        <div style = "text-align: center;">
+                            <h5>Dane adresowe</h5>
+                        </div>
+
+
+
+
+
+
+
+<!--                    <tbody th:each="employee : ${employees}">-->
+<!--                    <tr>-->
+<!--                        <td th:text="${employee.name}"/></td>-->
+<!--                        <td th:text="${employee.surname}"/></td>-->
+<!--                        <td th:text="${employee.position}"/></td>-->
+<!--                        <td th:text="${employee.age}"/></td>-->
+<!--                        <td th:text="${employee.active}"/></td>-->
+<!--                        <td th:text="${employee.nationality}"/></td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+
+<!--                    <tr th:each="addr,addrStat : ${user.addressList}">-->
+<!--                        <td><input type="text" th:value="${addr.name}" th:field="*{addressList[__${addrStat.index}__].name}"></td>-->
+
+
+                    <div th:object="${addresses}">
+                        <div th:each="address : ${addresses}">
+                            <div class="form-group">
+                                <input type="text" class="form-control" th:field="${address.street}"/>
+                                <div class="text-danger"><p th:if="${#fields.hasErrors('address.street')}" th:errors="${address.street}"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style = "text-align: right;">
+                    <button type="submit" class="btn btn-primary btn-lg active center-block">ZAPISZ</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+<!--                        <div th:each="address, stat : *{addresses}">-->
+<!--                            <span th:switch="*{addresses[__${stat.index}__].type}">-->
+<!--                                <div style = "text-align: center;" th:case="P" ><h5>Adres stały</h5></div>-->
+<!--                                <div style = "text-align: center;" th:case="C" ><h5>Adres korespondencyjny</h5></div>-->
+<!--                            </span>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].type}"/>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].street}"/>-->
+<!--                                <label class="control-label">Ulica</label>-->
+<!--                                <div class="text-danger"><p th:if="${#fields.hasErrors('addresses[__${stat.index}__].street')}" th:errors="*{addresses[__${stat.index}__].street}"/></div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].streetNr}"/>-->
+<!--                                <label class="control-label">Numer domu</label>-->
+<!--                                <div class="text-danger"><p th:if="${#fields.hasErrors('addresses[__${stat.index}__].streetNr')}" th:errors="*{addresses[__${stat.index}__].streetNr}"/></div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="number" class="form-control" th:field="*{addresses[__${stat.index}__].flatNr}"/>-->
+<!--                                <label class="control-label">Numer mieszkania</label>-->
+<!--                                <div class="text-danger"><p th:if="${#fields.hasErrors('addresses[__${stat.index}__].flatNr')}" th:errors="*{addresses[__${stat.index}__].flatNr}"/></div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].postalCode}"/>-->
+<!--                                <label class="control-label">Kod pocztowy</label>-->
+<!--                                <div class="text-danger"><p th:if="${#fields.hasErrors('addresses[__${stat.index}__].postalCode')}" th:errors="*{addresses[__${stat.index}__].postalCode}"/></div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].city}"/>-->
+<!--                                <label class="control-label">Miasto</label>-->
+<!--                                <div class="text-danger"><p th:if="${#fields.hasErrors('addresses[__${stat.index}__].city')}" th:errors="*{addresses[__${stat.index}__].city}"/></div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].country}"/>-->
+<!--                                <label class="control-label">Kraj</label>-->
+<!--                                <div class="text-danger"><p th:if="${#fields.hasErrors('addresses[__${stat.index}__].country')}" th:errors="*{addresses[__${stat.index}__].country}"/></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div style = "text-align: right;">-->
+<!--                    <button type="submit" class="btn btn-primary btn-lg active center-block">ZAPISZ</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--                <div class="col-sm">-->
+<!--                    <div th:object="${form}">-->
+<!--                        <div style = "text-align: center;">-->
+<!--                            <h5>Dane adresowe</h5>-->
+<!--                        </div>-->
+<!--                        <div style = "text-align: center;">-->
+<!--                            <h6>Adres stały</h6>-->
+<!--                        </div>-->
+
+<!--                        <div th:each="address, stat : *{addresses}">-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].type}"/>-->
+<!--                                <label class="control-label">Typ adresu</label>-->
+<!--&lt;!&ndash;                                <div class="text-danger"><p th:if="${#fields.hasErrors('type')}" th:errors="*{type}"/></div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].street}"/>-->
+<!--                                <label class="control-label">Ulica</label>-->
+<!--&lt;!&ndash;                                <div class="text-danger"><p th:if="${#fields.hasErrors('street')}" th:errors="*{street}"/></div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="number" class="form-control" th:field="*{addresses[__${stat.index}__].streetNr}"/>-->
+<!--                                <label class="control-label">Numer domu</label>-->
+<!--&lt;!&ndash;                                <div class="text-danger"><p th:if="${#fields.hasErrors('streetNr')}" th:errors="*{streetNr}"/></div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].flatNr}"/>-->
+<!--                                <label class="control-label">Numer mieszkania</label>-->
+<!--&lt;!&ndash;                                <div class="text-danger"><p th:if="${#fields.hasErrors('flatNr')}" th:errors="*{flatNr}"/></div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].postalCode}"/>-->
+<!--                                <label class="control-label">Kod pocztowy</label>-->
+<!--&lt;!&ndash;                                <div class="text-danger"><p th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"/></div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].city}"/>-->
+<!--                                <label class="control-label">Miasto</label>-->
+<!--&lt;!&ndash;                                <div class="text-danger"><p th:if="${#fields.hasErrors('city')}" th:errors="*{city}"/></div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" th:field="*{addresses[__${stat.index}__].country}"/>-->
+<!--                                <label class="control-label">Kraj</label>-->
+<!--&lt;!&ndash;                                <div class="text-danger"><p th:if="${#fields.hasErrors('country')}" th:errors="*{country}"/></div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+
+
